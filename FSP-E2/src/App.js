@@ -1,58 +1,11 @@
 import React from 'react'
+import Course from './components/Course'
 
-const Course = (props) => 
-{
-  return (
-    <div>
-      <Header name={props.course.courseName}/>
-      <Content parts={props.course.parts}/> 
-      <Total tot={props.course.parts}/>
-    </div>
-  )
-}
-
-const Content = (props) =>
-{
-  return (
-    <ul>
-    {props.parts.map(line => 
-        <Part key={line.id} part={line}/>)}
-    </ul>
-  )
-}
-
-const Part = (props) => 
-{
-  return (
-    <li>{props.part.name} {props.part.exercises}</li>
-  )
-}   
-    
-    
-
-
-const Header = (props) => 
-{
-  return (
-    <div>
-      <p>{props.name}</p>
-    </div>
-  )
-}
-
-const Total = (props) =>
-{
-  return (
-    <div>
-      <p>Total = {props.tot.reduce((prev, next) => prev + next.exercises, 0)}</p>
-    </div>
-  )
-}
 
 const App = () => {
   const course = { 
     id: 1,
-    courseName : 'FRONT END BABY Stack application development',
+    courseName : 'FRONT Stack application development',
     parts : [
     {
       id:1,
