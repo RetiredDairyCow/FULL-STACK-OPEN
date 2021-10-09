@@ -1,20 +1,31 @@
 import React, {useState} from 'react'
+import Numbers from './components/Numbers'
 
 const App = () => {
 
   const [persons, setPersons] = useState([
-    {name: 'Ashesh Patel'}
+    {name: 'Ashesh Patel'},
+    {name: 'Olivia Virtue'}
   ])
   const [newName, setNewName] = useState('')
 
+  const doesIt = persons.some(el => el.name === 'Olivia Virtue')
+  console.log(doesIt)
+
   const addName = (event) => {
     event.preventDefault()
-    console.log("event registered")
-    const newNameObject = {
-      name: newName
+    const checkNameinArray = persons.some(nameElement => 
+      nameElement.name === newName)
+    if (checkNameinArray === true)
+      window.alert(newName +  " already exists!")
+    else {
+      const newNameObject = {
+        name: newName
+      }
+      setPersons(persons.concat(newNameObject))
+      setNewName('Add a new name')
     }
-    setPersons(persons.concat(newNameObject))
-    setNewName('Testing 1 2 1 2')
+    
   }
 
   const handleNameChange = (event) => {
@@ -35,6 +46,9 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
+      {persons.map(person => 
+        <Numbers key={person.name} firstAndLast = {person.name}/> 
+        )}
     </div>
   )
 
