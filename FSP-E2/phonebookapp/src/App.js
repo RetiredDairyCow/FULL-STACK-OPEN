@@ -4,15 +4,16 @@ import Numbers from './components/Numbers'
 const App = () => {
 
   const [persons, setPersons] = useState([
-    {name: 'Ashesh Patel'},
-    {name: 'Olivia Virtue'}
+    {name: 'Ashesh Patel', number: 7604645565},
+    {name: 'Olivia Virtue', number: 7604643579}
   ])
-  const [newName, setNewName] = useState('')
+  const [newName, setNewName] = useState('Enter Name')
+  const [newNumber, setNewNumber] = useState('Enter New Number')
 
   const doesIt = persons.some(el => el.name === 'Olivia Virtue')
   console.log(doesIt)
 
-  const addName = (event) => {
+  const addNameAndNumber = (event) => {
     event.preventDefault()
     const checkNameinArray = persons.some(nameElement => 
       nameElement.name === newName)
@@ -20,7 +21,8 @@ const App = () => {
       window.alert(newName +  " already exists!")
     else {
       const newNameObject = {
-        name: newName
+        name: newName,
+        number: newNumber
       }
       setPersons(persons.concat(newNameObject))
       setNewName('Add a new name')
@@ -33,13 +35,20 @@ const App = () => {
     setNewName(event.target.value)
   }
 
+  const handleNumberChange = (event) => {
+    setNewNumber(event.target.value)
+  }
+
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit={addName}>
+      <form onSubmit={addNameAndNumber}>
         <div>
           name: <input value={newName} onChange={handleNameChange}/>
+        </div>
+        <div>
+          number: <input value={newNumber} onChange={handleNumberChange}/>
         </div>
         <div>
           <button type="submit">add</button>
@@ -47,7 +56,8 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       {persons.map(person => 
-        <Numbers key={person.name} firstAndLast = {person.name}/> 
+        <Numbers key={person.name} firstAndLast = {person.name} 
+        no={person.number}/> 
         )}
     </div>
   )
