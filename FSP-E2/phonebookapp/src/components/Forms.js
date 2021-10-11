@@ -6,26 +6,27 @@ const Forms = (props) => {
         props.setNewName(event.target.value)
       }
     
-      const handleNumberChange = (event) => {
+    const handleNumberChange = (event) => {
         props.setNewNumber(event.target.value)
       }
-      const addNameAndNumber = (event) => {
+
+    const addNameAndNumber = (event) => {
         event.preventDefault()
         const checkNameinArray = props.persons.some(nameElement => 
-          nameElement.name === props.newName)
+            nameElement.name === props.newName)
+        
         if (checkNameinArray === true)
-          window.alert(props.newName +  " already exists!")
+            window.alert(props.newName +  " already exists!")
         else {
-          const newNameObject = {
+            const newNameObject = {
             name: props.newName,
             number: props.newNumber
-          }
-          props.setPersons(props.persons.concat(newNameObject))
-          props.setNewName('Add a new name')
-          props.setNewNumber('Add a new number')
+            }
+            props.setPersons(props.persons.concat(newNameObject))
+            props.setNewName('Add a new name')
+            props.setNewNumber('Add a new number')
         }
-        
-      }
+    }
       
     return (
         <form onSubmit={addNameAndNumber}>

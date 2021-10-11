@@ -15,26 +15,20 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('Enter New Number')
   const [searchTerm, setSearch] = useState('')
 
-
-  
-  
-  
   const nameFilter = searchTerm.length === 0 ? persons : 
     persons.filter(person => 
       person.name.toLowerCase().includes(searchTerm.toLowerCase()))
   
-
-  /* const nameFilter = searchTerm ? persons : 
-    persons.filter( person => person.name.toUpperCase().includes(searchTerm.toUpperCase)) */
-
   return (
     <div>
       <h2>Phonebook</h2>
       {<Search searchTerm={searchTerm} setSearch={setSearch}/>}
      <h2>Add New Data Please</h2>
+
       {<Forms newName={newName} newNumber={newNumber} 
       setNewName={setNewName} setNewNumber={setNewNumber}
       persons={persons} setPersons={setPersons}/>}
+
       <h2>Numbers</h2>
       {nameFilter.map(person =>
         <Numbers key={person.name} firstAndLast = {person.name} 
