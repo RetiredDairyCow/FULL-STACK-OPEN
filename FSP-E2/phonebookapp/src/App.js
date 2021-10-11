@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import Numbers from './components/Numbers'
+import Search from './components/Search'
+import Forms from './components/Forms'
 
 const App = () => {
 
@@ -14,36 +16,8 @@ const App = () => {
   const [searchTerm, setSearch] = useState('')
 
 
-  const addNameAndNumber = (event) => {
-    event.preventDefault()
-    const checkNameinArray = persons.some(nameElement => 
-      nameElement.name === newName)
-    if (checkNameinArray === true)
-      window.alert(newName +  " already exists!")
-    else {
-      const newNameObject = {
-        name: newName,
-        number: newNumber
-      }
-      setPersons(persons.concat(newNameObject))
-      setNewName('Add a new name')
-      setNewNumber('Add a new number')
-    }
-    
-  }
-
-  const handleNameChange = (event) => {
-    console.log(event.target.value)
-    setNewName(event.target.value)
-  }
-
-  const handleNumberChange = (event) => {
-    setNewNumber(event.target.value)
-  }
-
-  const handleSearch = (event) => {
-    setSearch(event.target.value)
-  }
+  
+  
   
   const nameFilter = searchTerm.length === 0 ? persons : 
     persons.filter(person => 
@@ -56,21 +30,11 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        Search Name: <input value={searchTerm} onChange={handleSearch}/>
-      </div>
+      {<Search searchTerm={searchTerm} setSearch={setSearch}/>}
      <h2>Add New Data Please</h2>
-      <form onSubmit={addNameAndNumber}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange}/>
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange}/>
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      {<Forms newName={newName} newNumber={newNumber} 
+      setNewName={setNewName} setNewNumber={setNewNumber}
+      persons={persons} setPersons={setPersons}/>}
       <h2>Numbers</h2>
       {nameFilter.map(person =>
         <Numbers key={person.name} firstAndLast = {person.name} 
