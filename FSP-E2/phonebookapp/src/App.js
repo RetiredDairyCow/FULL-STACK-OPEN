@@ -6,7 +6,8 @@ const App = () => {
   const [persons, setPersons] = useState([
     {name: 'Ashesh Patel', number: 7604645565},
     {name: 'Olivia Virtue', number: 7604643579},
-    {name: 'Kev Bhardawaj', number: 7601234545}
+    {name: 'Kev Bhardawaj', number: 7601234545},
+    {name: 'Dimple Agarwal', number: 7609854886}
   ])
   const [newName, setNewName] = useState('Enter Name')
   const [newNumber, setNewNumber] = useState('Enter New Number')
@@ -26,6 +27,7 @@ const App = () => {
       }
       setPersons(persons.concat(newNameObject))
       setNewName('Add a new name')
+      setNewNumber('Add a new number')
     }
     
   }
