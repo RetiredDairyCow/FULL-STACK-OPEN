@@ -12,7 +12,7 @@ const Forms = (props) => {
 
     const addNameAndNumber = (event) => {
         /* Add name and number to the list of notes */
-        1
+  
         event.preventDefault()
         const checkNameinArray = props.persons.some(nameElement => 
             nameElement.name === props.newName)
