@@ -7,6 +7,8 @@ const Country = (props) => {
 }
 
 const CountryDetails = (props) => {
+    //When only one country -> show details. 
+    //To-Do: Add weather API 
     const lang = []
     for (const lanCode of Object.keys(props.country.languages)){
         lang.push(props.country.languages[lanCode])
