@@ -1,19 +1,26 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Numbers from './components/Numbers'
 import Search from './components/Search'
 import Forms from './components/Forms'
+import axios from 'axios'
 
 const App = () => {
 
-  const [persons, setPersons] = useState([
-    {name: 'Ashesh Patel', number: 7604645565},
-    {name: 'Olivia Virtue', number: 7604643579},
-    {name: 'Kev Bhardawaj', number: 7601234545},
-    {name: 'Dimple Agarwal', number: 7609854886}
-  ])
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('Enter Name')
   const [newNumber, setNewNumber] = useState('Enter New Number')
   const [searchTerm, setSearch] = useState('')
+
+  const hook = () => {
+    console.log('Effect')
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        setPersons(response.data)
+        console.log('Data received')
+      })
+  }
+  useEffect(hook,[])
 
   const nameFilter = searchTerm.length === 0 ? persons : 
     persons.filter(person => 

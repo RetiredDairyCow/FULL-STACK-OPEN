@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Note from './components/Note'
+//import Note from './components/Note'
 import axios from 'axios'
 
 const App = () => {
@@ -30,7 +30,7 @@ const App = () => {
       id: notes.length + 1,
     }
     setNotes(notes.concat(noteObject))
-  setNewNote(' ')
+    setNewNote(' ')
   }
   
   const handleNoteChange = (event) => {

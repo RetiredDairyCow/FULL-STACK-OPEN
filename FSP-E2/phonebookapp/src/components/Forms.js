@@ -25,8 +25,8 @@ const Forms = (props) => {
             number: props.newNumber
             }
             props.setPersons(props.persons.concat(newNameObject))
-            props.setNewName('Add a new name')
-            props.setNewNumber('Add a new number')
+            /* props.setNewName('Add a new name')
+            props.setNewNumber('Add a new number') */
         }
     }
       
