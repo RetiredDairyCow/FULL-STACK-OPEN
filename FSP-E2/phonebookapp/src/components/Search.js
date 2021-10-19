@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Search = (props) => { 
+    //event handler to set search term
     const handleSearch = (event) => {
         props.setSearch(event.target.value)
     }

@@ -13,7 +13,7 @@ const Forms = (props) => {
     const addNameAndNumber = (event) => {
         /* Add name and number to the list of notes */
   
-        event.preventDefault()
+        event.preventDefault() //prevents refreshing page on submit
         const checkNameinArray = props.persons.some(nameElement => 
             nameElement.name === props.newName)
         
@@ -25,21 +25,19 @@ const Forms = (props) => {
             number: props.newNumber
             }
             props.setPersons(props.persons.concat(newNameObject))
-            /* props.setNewName('Add a new name')
-            props.setNewNumber('Add a new number') */
         }
     }
       
     return (
         <form onSubmit={addNameAndNumber}>
         <div>
-          name: <input value={props.newName} onChange={handleNameChange}/>
+          Name: <input value={props.newName} onChange={handleNameChange}/>
         </div>
         <div>
-          number: <input value={props.newNumber} onChange={handleNumberChange}/>
+          Number: <input value={props.newNumber} onChange={handleNumberChange}/>
         </div>
         <div>
-          <button type="submit">add</button>
+          <button type="submit">Add</button>
         </div>
       </form>
     )
