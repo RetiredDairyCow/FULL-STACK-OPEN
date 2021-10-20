@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 
 
@@ -10,28 +11,61 @@ const Country = (props) => {
     }
     //lists different countries when the search results in less than 10 countries
     return (
-        <li>{props.country + ' '}
+        <div>{props.country}
         <button onClick={handleShow}>{showDetails ? 'Hide' : 'Show'}</button>
         {showDetails && <CountryDetails country={props.countryObj}/>}
-        </li>
+        </div>
+    )
+}
+
+const Weather = (props) => {
+    return (
+        <>
+        <div>Currently it is {props.temp} Celcius</div>
+        <img src={props.weatherImage} alt="IMG"></img>
+        <div><b>Wind: </b>{props.windSpeed} kmph</div>
+        </>
     )
 }
 
 const CountryDetails = (props) => {
     //When only one country -> show details. 
-    //To-Do: Add weather API 
+    const api_key = process.env.REACT_APP_API_KEY
+    const url = `http://api.weatherstack.com/current?access_key=${api_key}&query=${props.country.capital}`
+        
+
     const lang = []
+    const [temp, setTemp] = useState('')
+    const [windSpeed, setWindSpeed] = useState('')
+    const [windDirection, setWindDirection] = useState('')
+    const [weatherImage, setImage] = useState('')
+    
+    const weatherHook = () => {
+       axios
+        .get(url)
+        .then(response => {
+            setTemp(response.data.current.temperature)
+            setWindSpeed(response.data['current']['wind_speed'])
+            setWindDirection(response.data['current']['wind_dir'])
+            setImage(response.data['current']['weather_icons'])
+        })
+    }
+    useEffect(weatherHook, [url])
+    
+    
     for (const lanCode of Object.keys(props.country.languages)){
         lang.push(props.country.languages[lanCode])
     }
     return (
         <div>
-            <h2>{props.country.name.common}</h2>
-            <p>Capital: {props.country.capital}</p>
-            <p>Area:{props.country.area}</p>
-            <p>Languages:</p>
+            <h3>{props.country.name.common}</h3>
+            <div>Capital: {props.country.capital}</div>
+            <div>Area:{props.country.area}</div>
+            <h3>Languages:</h3>
             {lang.map((e,index) => <li key={index}>{e}</li>)}
             <img src={props.country.flags['png']} width="200px" alt="flag"/>
+            <h3>Weather in {props.country.capital}</h3>
+            {<Weather temp={temp} windSpeed={windSpeed} weatherImage={weatherImage}/>}
         </div>
     )
 }
