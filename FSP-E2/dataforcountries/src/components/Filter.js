@@ -23,7 +23,7 @@ const Weather = (props) => {
         <>
         <div>Currently it is {props.temp} Celcius</div>
         <img src={props.weatherImage} alt="IMG"></img>
-        <div><b>Wind: </b>{props.windSpeed} kmph</div>
+        <div><b>Wind: </b>{props.windSpeed} kmph direction {props.windDirection}</div>
         </>
     )
 }
@@ -65,7 +65,8 @@ const CountryDetails = (props) => {
             {lang.map((e,index) => <li key={index}>{e}</li>)}
             <img src={props.country.flags['png']} width="200px" alt="flag"/>
             <h3>Weather in {props.country.capital}</h3>
-            {<Weather temp={temp} windSpeed={windSpeed} weatherImage={weatherImage}/>}
+            {<Weather temp={temp} windSpeed={windSpeed} weatherImage={weatherImage}
+                windDirection={windDirection}/>}
         </div>
     )
 }
