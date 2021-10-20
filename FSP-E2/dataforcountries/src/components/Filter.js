@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+
 
 const Country = (props) => {
+    const [showDetails, setShow] = useState(false)
+
+    const handleShow = () => {
+        setShow(!showDetails)
+    }
+    //lists different countries when the search results in less than 10 countries
     return (
-        <li>{props.country}</li>
+        <li>{props.country + ' '}
+        <button onClick={handleShow}>{showDetails ? 'Hide' : 'Show'}</button>
+        {showDetails && <CountryDetails country={props.countryObj}/>}
+        </li>
     )
 }
 
@@ -31,13 +42,13 @@ const Filter = (props) => {
         if(props.countries.length === 1){
             resultingCountries = <CountryDetails country={props.countries[0]}/>
         }
-    
         else if (props.countries.length > 10){
             resultingCountries = "There are too many matches, please specify another filter"
-    }
-        else if (props.countries.length <=10){
-            resultingCountries = props.countries.map(e => {
-                return <Country key={e.name.common} country={e.name.common}/>
+        }
+        else if (props.countries.length <= 10){
+            resultingCountries = props.countries.map((e,i) => {
+                return <Country key={e.name.common} country={e.name.common}
+                    countryObj={e}/>
             })
         }
     

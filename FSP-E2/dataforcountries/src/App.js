@@ -7,6 +7,7 @@ const App = () => {
  
   const [countries, setCountries] = useState([])
   const [searchTerm, setSearch] = useState('')
+
   const url = 'https://restcountries.com/v3.1/all'
 
   const hook = () => {
