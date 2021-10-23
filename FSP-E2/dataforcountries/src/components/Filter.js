@@ -59,7 +59,7 @@ const CountryDetails = (props) => {
           
         })
     }
-    useEffect(weatherHook, [url])
+    useEffect(weatherHook,[url])
     
     
     for (const lanCode of Object.keys(props.country.languages)){
