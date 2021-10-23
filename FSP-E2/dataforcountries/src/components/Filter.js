@@ -22,7 +22,7 @@ const Weather = (props) => {
     return (
         <>
         <div>Currently it is {props.temp} Celcius</div>
-        {<img src={props.weatherImage} alt="IMG"></img>}
+        <img src={props.weatherImage} alt="IMG"></img>
         <div><b>Wind: </b>{props.windSpeed} kmph direction {props.windDirection}</div>
         </>
     )
@@ -31,9 +31,7 @@ const Weather = (props) => {
 const CountryDetails = (props) => {
     //When only one country -> show details. 
     const api_key = process.env.REACT_APP_API_KEY
-    const url = `http://api.weatherstack.com/current
-    ?access_key=${api_key}
-    &query=${props.country.capital}`
+    const url = `http://api.weatherstack.com/current?access_key=${api_key}&query=${props.country.capital}`
         
 
     const lang = []
