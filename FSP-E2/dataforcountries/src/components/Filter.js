@@ -22,7 +22,7 @@ const Weather = (props) => {
     return (
         <>
         <div>Currently it is {props.temp} Celcius</div>
-        <img src={props.weatherImage} alt="IMG"></img>
+        {<img src={props.weatherImage} alt="IMG"></img>}
         <div><b>Wind: </b>{props.windSpeed} kmph direction {props.windDirection}</div>
         </>
     )
@@ -37,20 +37,26 @@ const CountryDetails = (props) => {
         
 
     const lang = []
-    const [temp, setTemp] = useState('')
-    const [windSpeed, setWindSpeed] = useState('')
-    const [windDirection, setWindDirection] = useState('')
-    const [weatherImage, setImage] = useState('')
-    
+    const [weather, setWeather] = useState({
+        temp : undefined,
+        windSpeed : undefined,
+        windDirection : undefined,
+        weatherImage : undefined
+    })
+  
     const weatherHook = () => {
        axios
         .get(url)
         .then(response => {
-            console.log('Got response')
-            setTemp(response.data['current']['temperature'])
-            setWindSpeed(response.data['current']['wind_speed'])
-            setWindDirection(response.data['current']['wind_dir'])
-            setImage(response.data['current']['weather_icons'])
+            const updateWeather = {
+                temp : response.data['current']['temperature'],
+                windSpeed : response.data['current']['wind_speed'],
+                windDirection : response.data['current']['wind_dir'],
+                weatherImage : response.data['current']['weather_icons']
+                
+            }
+            setWeather(updateWeather)
+          
         })
     }
     useEffect(weatherHook, [url])
@@ -68,8 +74,8 @@ const CountryDetails = (props) => {
             {lang.map((e,index) => <li key={index}>{e}</li>)}
             <img src={props.country.flags['png']} width="200px" alt="flag"/>
             <h3>Weather in {props.country.capital}</h3>
-            {<Weather temp={temp} windSpeed={windSpeed} weatherImage={weatherImage}
-                windDirection={windDirection}/>}
+            {<Weather temp={weather.temp} windSpeed={weather.windSpeed} weatherImage={weather.weatherImage}
+                windDirection={weather.windDirection}/>}
         </div>
     )
 }
