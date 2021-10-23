@@ -11,18 +11,17 @@ const App = () => {
   const url = 'https://restcountries.com/v3.1/all'
 
   const hook = () => {
-   /*  console.log('Hook') */
     axios
     .get(url)
     .then(response => {
-      /* console.log('Promises fullfilled') */
       setCountries(response.data)
     })
   }
-  useEffect(hook, [])
+  useEffect(hook, []) //only render once and store the data in countries
 
   const searchFilter = searchTerm.length === 0 ? countries :
-    countries.filter(country => country.name.common.toLowerCase().includes(searchTerm.toLowerCase()))
+    countries.filter(country => 
+    country.name.common.toLowerCase().includes(searchTerm.toLowerCase()))
 
   return (
     <div>

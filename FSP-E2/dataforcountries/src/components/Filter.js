@@ -9,7 +9,7 @@ const Country = (props) => {
     const handleShow = () => {
         setShow(!showDetails)
     }
-    //lists different countries when the search results in less than 10 countries
+    
     return (
         <div>{props.country}
         <button onClick={handleShow}>{showDetails ? 'Hide' : 'Show'}</button>
@@ -31,7 +31,9 @@ const Weather = (props) => {
 const CountryDetails = (props) => {
     //When only one country -> show details. 
     const api_key = process.env.REACT_APP_API_KEY
-    const url = `http://api.weatherstack.com/current?access_key=${api_key}&query=${props.country.capital}`
+    const url = `http://api.weatherstack.com/current
+    ?access_key=${api_key}
+    &query=${props.country.capital}`
         
 
     const lang = []
@@ -44,7 +46,8 @@ const CountryDetails = (props) => {
        axios
         .get(url)
         .then(response => {
-            setTemp(response.data.current.temperature)
+            console.log('Got response')
+            setTemp(response.data['current']['temperature'])
             setWindSpeed(response.data['current']['wind_speed'])
             setWindDirection(response.data['current']['wind_dir'])
             setImage(response.data['current']['weather_icons'])
