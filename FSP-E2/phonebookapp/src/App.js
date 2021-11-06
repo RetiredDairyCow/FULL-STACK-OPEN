@@ -13,12 +13,10 @@ const App = () => {
   const [searchTerm, setSearch] = useState('')
 
   const hook = () => {
-    console.log('Effect')
     axios
       .get('http://localhost:3001/persons')
       .then(response => {
         setPersons(response.data)
-        console.log('Data received')
       })
   }
   useEffect(hook,[])

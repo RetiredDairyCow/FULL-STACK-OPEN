@@ -1,5 +1,5 @@
 import React from 'react'
-
+import axios from 'axios'
 const Forms = (props) => {
     const handleNameChange = (event) => {
         console.log(event.target.value)
@@ -24,7 +24,12 @@ const Forms = (props) => {
             name: props.newName,
             number: props.newNumber
             }
-            props.setPersons(props.persons.concat(newNameObject))
+            axios
+              .post('http://localhost:3001/persons', newNameObject)
+              .then(response => {
+                props.setPersons(props.persons.concat(response.data))
+              })
+            /* props.setPersons(props.persons.concat(newNameObject)) */
         }
     }
       
