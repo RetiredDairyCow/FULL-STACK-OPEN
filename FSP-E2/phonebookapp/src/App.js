@@ -5,8 +5,9 @@ import Search from './components/Search'
 import Forms from './components/Forms'
 import personServices from './services/persons'
 
-const App = () => {
 
+const App = () => {
+ /*  const url = 'http://localhost:3001/persons' */
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('Enter Name')
   const [newNumber, setNewNumber] = useState('Enter New Number')
@@ -43,8 +44,8 @@ const App = () => {
 
       <h2>Numbers</h2>
       {nameFilter.map(person =>
-        <Numbers key={person.name} firstAndLast = {person.name} 
-        no={person.number}/>)}
+        <Numbers key={person.id} firstAndLast = {person.name} entryID={person.id}
+        no={person.number} persons={persons} setPersons={setPersons}/>)}
     
     </div>
   )
