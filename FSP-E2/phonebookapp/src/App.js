@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import Numbers from './components/Numbers'
 import Search from './components/Search'
 import Forms from './components/Forms'
-import axios from 'axios'
+import personServices from './services/persons'
 
 const App = () => {
 
@@ -13,11 +13,16 @@ const App = () => {
   const [searchTerm, setSearch] = useState('')
 
   const hook = () => {
-    axios
+    personServices
+      .getAll()
+      .then(initialList =>{
+        setPersons(initialList)
+      })
+    /* axios
       .get('http://localhost:3001/persons')
       .then(response => {
         setPersons(response.data)
-      })
+      }) */
   }
   useEffect(hook,[])
 
