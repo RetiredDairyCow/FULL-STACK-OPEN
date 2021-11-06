@@ -42,7 +42,6 @@ const App = () => {
   }
   
   const handleNoteChange = (event) => {
-    console.log(event.target.value)
     setNewNote(event.target.value)
   }
 
@@ -50,6 +49,7 @@ const App = () => {
     const handler = () => {
     const note = notes.find(n => n.id === id)
     const changedNote = {...note, important : !note.important}
+    
     noteServices
       .update(id, changedNote)
       .then(returnedNote => {
@@ -59,15 +59,6 @@ const App = () => {
         alert(`the note '${note.content}' was already deleted from the server`)
         setNotes(notes.filter(n => n.id !== id))
       })
-      /* .then(response => {
-        setNotes(notes.map(note => 
-          note.id !== id ? note : response.data))
-      }) */
-    /* axios
-      .put(url, changedNote)
-      .then(response => {
-        setNotes(notes.map(note => note.id !== id ? note : response.data))
-      }) */
     }
     return handler
   }

@@ -20,7 +20,21 @@ const Forms = (props) => {
             nameElement.name === props.newName)
         
         if (checkNameinArray === true)
-            window.alert(props.newName +  " already exists!")
+        {
+          if(window.confirm(`${props.newName} is already in the phonebook,
+          replace old number with a new one?`))
+          {
+            const findPersonObj = props.persons.find(p => p.name === props.newName)
+            const newPersonObj = {...findPersonObj, number : props.newNumber}
+
+            personServices
+              .update(findPersonObj.id, newPersonObj)
+              .then(responseObj => {
+                props.setPersons(props.persons.map(p => p.id !== newPersonObj.id ? p : responseObj ))
+              })
+            
+          }
+        }
         else {
             const newNameObject = {
             name: props.newName,
@@ -31,11 +45,6 @@ const Forms = (props) => {
               .then(returnedPerson => {
                 props.setPersons(props.persons.concat(returnedPerson))
               })
-            /* axios
-              .post('http://localhost:3001/persons', newNameObject)
-              .then(response => {
-                props.setPersons(props.persons.concat(response.data))
-              }) */
         }
     }
       
