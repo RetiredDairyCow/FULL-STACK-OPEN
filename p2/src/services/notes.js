@@ -2,7 +2,7 @@ import axios from 'axios'
 const baseUrl = 'http://localhost:3001/notes'
 
 const getAll = () => {
-    /*Returns the notes*/
+    /*Returns response.data*/
     /* return axios.get(baseUrl) */
     const request = axios.get(baseUrl)
     const nonExisting = {
