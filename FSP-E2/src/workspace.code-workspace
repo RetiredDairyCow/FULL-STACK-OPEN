@@ -1,14 +1,7 @@
 {
-	"folders": [
-		{
-			"path": "../../FSP-E1"
-		},
-		{
-			"path": "../.."
-		},
-		{
-			"path": "../../../PythonCode/Leet Code/Data Structures and Algo"
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "../.."
+        }
+    ]
 }
