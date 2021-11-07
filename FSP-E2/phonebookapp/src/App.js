@@ -3,7 +3,9 @@ import React, {useState, useEffect} from 'react'
 import Numbers from './components/Numbers'
 import Search from './components/Search'
 import Forms from './components/Forms'
+import Notification from './components/Notification'
 import personServices from './services/persons'
+import './index.css'
 
 
 const App = () => {
@@ -12,6 +14,8 @@ const App = () => {
   const [newName, setNewName] = useState('Enter Name')
   const [newNumber, setNewNumber] = useState('Enter New Number')
   const [searchTerm, setSearch] = useState('')
+  const [addedMessage, setAddedMessage] = useState(null)
+
 
   const hook = () => {
     personServices
@@ -35,17 +39,19 @@ const App = () => {
     <div>
       
       <h2>Phonebook</h2>
+      <Notification message={addedMessage}/>
       {<Search searchTerm={searchTerm} setSearch={setSearch}/>}
      
       <h2>Add New Entry Please</h2>
       {<Forms newName={newName} newNumber={newNumber} 
       setNewName={setNewName} setNewNumber={setNewNumber}
-      persons={persons} setPersons={setPersons}/>}
+      persons={persons} setPersons={setPersons}
+      addedMessage={addedMessage} setAddedMessage={setAddedMessage} />}
 
       <h2>Numbers</h2>
       {nameFilter.map(person =>
         <Numbers key={person.id} firstAndLast = {person.name} entryID={person.id}
-        no={person.number} persons={persons} setPersons={setPersons}/>)}
+        no={person.number} persons={persons} setPersons={setPersons} />)}
     
     </div>
   )

@@ -4,7 +4,6 @@ import personServices from '../services/persons'
 
 
 const Numbers = (props) => {
-     
     const handleDelete = (event) => {
         if(window.confirm(`Delete ${props.firstAndLast}?`))
         {
