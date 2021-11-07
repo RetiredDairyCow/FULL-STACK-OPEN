@@ -37,7 +37,7 @@ const App = () => {
       <h2>Phonebook</h2>
       {<Search searchTerm={searchTerm} setSearch={setSearch}/>}
      
-      <h2>Add New Data Please</h2>
+      <h2>Add New Entry Please</h2>
       {<Forms newName={newName} newNumber={newNumber} 
       setNewName={setNewName} setNewNumber={setNewNumber}
       persons={persons} setPersons={setPersons}/>}
