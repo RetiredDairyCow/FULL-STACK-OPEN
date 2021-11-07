@@ -15,6 +15,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('Enter New Number')
   const [searchTerm, setSearch] = useState('')
   const [addedMessage, setAddedMessage] = useState(null)
+  
 
 
   const hook = () => {
@@ -46,7 +47,8 @@ const App = () => {
       {<Forms newName={newName} newNumber={newNumber} 
       setNewName={setNewName} setNewNumber={setNewNumber}
       persons={persons} setPersons={setPersons}
-      addedMessage={addedMessage} setAddedMessage={setAddedMessage} />}
+      addedMessage={addedMessage} setAddedMessage={setAddedMessage}
+      entryID={persons.id} />}
 
       <h2>Numbers</h2>
       {nameFilter.map(person =>

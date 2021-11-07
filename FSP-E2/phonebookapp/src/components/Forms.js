@@ -34,6 +34,17 @@ const Forms = (props) => {
               .then(responseObj => {
                 props.setPersons(props.persons.map(p => p.id !== newPersonObj.id ? p : responseObj ))
               })
+              /*If we try to update a number that has already been delete from server*/
+              .catch(error => {
+                props.setAddedMessage(`Information of ${props.newName} has already
+                been deleted from the server`)
+                setTimeout(() => {
+                  props.setAddedMessage(null)
+                }, 4000)
+                props.setPersons(props.persons.filter(p => p.id !== props.entryID))
+              })
+              
+
               
           }
         }
