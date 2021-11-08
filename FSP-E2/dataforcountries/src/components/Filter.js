@@ -32,9 +32,8 @@ const CountryDetails = (props) => {
     //When only one country -> show details. 
     const api_key = process.env.REACT_APP_API_KEY
     const url = `http://api.weatherstack.com/current?access_key=${api_key}&query=${props.country.capital}`
-        
-
     const lang = []
+    
     const [weather, setWeather] = useState({
         temp : undefined,
         windSpeed : undefined,

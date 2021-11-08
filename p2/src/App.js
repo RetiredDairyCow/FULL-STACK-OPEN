@@ -51,12 +51,6 @@ const App = () => {
         setNotes(notes.concat(returnedNote))
         setNewNote('')
     })
-    /* axios
-      .post('http://localhost:3001/noteshttp://localhost:3001/notes', noteObject)
-      .then(response => {
-        setNotes(notes.concat(response.data))
-        setNewNote('')
-      }) */
   }
   
   const handleNoteChange = (event) => {
@@ -88,21 +82,26 @@ const App = () => {
     return (
     <div>
       <h1>Notes</h1>
+      
       <Notification message={errorMessage}/>
+      
       <div>
         <button onClick={() => setShowAll(!showAll)}>
           show {showAll ? 'important' : 'all'}
         </button>
       </div>
+      
       <ul>
        {notesToShow.map(note => 
        <Note key={note.id} note={note} toggleImportance={toggleImportanceOfFunc(note.id)} />
        )}{/*  or use () => toggleImportanceOf(note.id)  */}
       </ul>
+      
       <form onSubmit={addNote}>
         <input value={newNote} onChange={handleNoteChange}/>
       <button class="submitButton" type="submit">Save</button>
       </form>
+      
       <Footer/>
     </div>
   )
