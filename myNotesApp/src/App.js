@@ -99,7 +99,7 @@ const App = () => {
       
       <form onSubmit={addNote}>
         <input value={newNote} onChange={handleNoteChange}/>
-      <button class="submitButton" type="submit">Save</button>
+      <button className="submitButton" type="submit">Save</button>
       </form>
       
       <Footer/>

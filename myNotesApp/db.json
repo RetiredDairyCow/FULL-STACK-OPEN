@@ -21,20 +21,26 @@
     {
       "content": "Posting a new note",
       "date": "2021-10-23T20:37:42.865Z",
-      "important": true,
+      "important": false,
       "id": 4
     },
     {
       "content": "A whole new world ",
       "date": "2021-10-23T23:58:46.768Z",
-      "important": false,
+      "important": true,
       "id": 5
     },
     {
       "content": "Ashesh Patel ",
       "date": "2021-10-24T02:54:00.232Z",
-      "important": true,
+      "important": false,
       "id": 6
+    },
+    {
+      "content": "Olivia Virtue",
+      "date": "2021-11-10T02:13:20.589Z",
+      "important": true,
+      "id": 7
     }
   ]
 }
